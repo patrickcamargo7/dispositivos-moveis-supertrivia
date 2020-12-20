@@ -3,22 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_game">
 
     <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigation_game"
         android:name="ifpr.dispositivosmoveis.supertrivia.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_game_to_navigation_settings"
+            app:destination="@id/navigation_settings" />
+        <action
+            android:id="@+id/action_navigation_game_to_navigation_ranking"
+            app:destination="@id/navigation_ranking" />
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="ifpr.dispositivosmoveis.supertrivia.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_settings"
+        android:name="ifpr.dispositivosmoveis.supertrivia.ui.settings.SettingsFragment"
+        android:label="@string/title_settings"
+        tools:layout="@layout/fragment_settings" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_ranking"
         android:name="ifpr.dispositivosmoveis.supertrivia.ui.ranking.RankingFragment"
         android:label="@string/title_ranking"
         tools:layout="@layout/fragment_ranking" />
