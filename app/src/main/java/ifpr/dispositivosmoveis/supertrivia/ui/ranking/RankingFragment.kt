@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ifpr.dispositivosmoveis.supertrivia.R
 import ifpr.dispositivosmoveis.supertrivia.adapters.RankingAdapter
 import ifpr.dispositivosmoveis.supertrivia.dao.RankingDAO
+import ifpr.dispositivosmoveis.supertrivia.util.Helpers
 import kotlinx.android.synthetic.main.fragment_ranking.*
 import kotlinx.android.synthetic.main.fragment_ranking.view.*
 
@@ -33,8 +34,9 @@ class RankingFragment : Fragment() {
             view.rankingList.adapter = RankingAdapter(rankingAPI.data)
             view.rankingList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             progressBarRanking.visibility = View.GONE
-        }, {
+        }, { error ->
             progressBarRanking.visibility = View.GONE
+            activity?.let { it1 -> Helpers.showErrorConnection(error, it1) }
         })
     }
 }

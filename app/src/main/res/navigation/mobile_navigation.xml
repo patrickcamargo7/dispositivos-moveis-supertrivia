@@ -35,6 +35,15 @@
     <fragment
         android:id="@+id/gameFragment"
         android:name="ifpr.dispositivosmoveis.supertrivia.ui.game.GameFragment"
-        android:label="fragment_game"
-        tools:layout="@layout/fragment_game" />
+        android:label="@string/game"
+        tools:layout="@layout/fragment_game" >
+        <action
+            android:id="@+id/action_gameFragment_to_finishGameFragment"
+            app:destination="@id/finishGameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/finishGameFragment"
+        android:name="ifpr.dispositivosmoveis.supertrivia.ui.game.FinishGameFragment"
+        android:label="@string/finish_game"
+        tools:layout="@layout/fragment_finish_game" />
 </navigation>

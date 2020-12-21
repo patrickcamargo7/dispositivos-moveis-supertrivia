@@ -7,6 +7,19 @@
     android:padding="16dp"
     tools:context=".ui.game.GameFragment">
 
+    <Button
+        android:id="@+id/btnNextProblem"
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:text="@string/next_problem"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.375"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listAnswers"
+        app:layout_constraintVertical_bias="0.095"
+        android:visibility="gone"/>
+
     <ProgressBar
         android:id="@+id/progressBarGame"
         style="?android:attr/progressBarStyle"
@@ -63,4 +76,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSendAnswer"
         app:layout_constraintVertical_bias="0.038" />
+
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/progressBarAnswer"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="40dp"
+        android:layout_height="42dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listAnswers" />
 </androidx.constraintlayout.widget.ConstraintLayout>

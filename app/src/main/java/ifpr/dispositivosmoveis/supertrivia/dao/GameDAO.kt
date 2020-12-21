@@ -21,8 +21,12 @@ class GameDAO {
     ) {
         service.findOrCreate(difficulty, categoryId, token).enqueue(object : Callback<BaseResponse<Game>> {
             override fun onResponse(call: Call<BaseResponse<Game>>, response: Response<BaseResponse<Game>>) {
-                val game = response.body()!!
-                finished(game)
+                if (response.isSuccessful) {
+                    val game = response.body()!!
+                    finished(game)
+                } else {
+                    onError(Exception())
+                }
             }
             override fun onFailure(call: Call<BaseResponse<Game>>, t: Throwable) {
                 onError(t)
@@ -60,8 +64,12 @@ class GameDAO {
     ) {
         service.nextProblem(token).enqueue(object : Callback<BaseResponse<Problem>> {
             override fun onResponse(call: Call<BaseResponse<Problem>>, response: Response<BaseResponse<Problem>>) {
-                val game = response.body()!!
-                finished(game)
+                if (response.isSuccessful) {
+                    val game = response.body()!!
+                    finished(game)
+                } else {
+                    onError(Exception())
+                }
             }
             override fun onFailure(call: Call<BaseResponse<Problem>>, t: Throwable) {
                 onError(t)
@@ -76,8 +84,12 @@ class GameDAO {
     ) {
         service.finish(token).enqueue(object : Callback<BaseResponse<Game>> {
             override fun onResponse(call: Call<BaseResponse<Game>>, response: Response<BaseResponse<Game>>) {
-                val game = response.body()!!
-                finished(game)
+                if (response.isSuccessful) {
+                    val game = response.body()!!
+                    finished(game)
+                } else {
+                    onError(Exception())
+                }
             }
             override fun onFailure(call: Call<BaseResponse<Game>>, t: Throwable) {
                 onError(t)
@@ -93,8 +105,12 @@ class GameDAO {
     ) {
         service.sendAnswer(answerId, token).enqueue(object : Callback<BaseResponse<FixProblem>> {
             override fun onResponse(call: Call<BaseResponse<FixProblem>>, response: Response<BaseResponse<FixProblem>>) {
-                val fixProblem = response.body()!!
-                finished(fixProblem)
+                if (response.isSuccessful) {
+                    val fixProblem = response.body()!!
+                    finished(fixProblem)
+                } else {
+                    onError(Exception())
+                }
             }
             override fun onFailure(call: Call<BaseResponse<FixProblem>>, t: Throwable) {
                 onError(t)

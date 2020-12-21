@@ -20,11 +20,33 @@ class UserDAO {
     ) {
         service.authenticate(username, password).enqueue(object : Callback<BaseResponse<User>> {
             override fun onResponse(call: Call<BaseResponse<User>>, response: Response<BaseResponse<User>>) {
-                val user = response.body()!!
+                if (response.isSuccessful) {
+                    val user = response.body()!!
+                    finished(user)
+                } else {
+                    onError(Exception())
+                }
+            }
 
-                finished(user)
+            override fun onFailure(call: Call<BaseResponse<User>>, t: Throwable) {
+                onError(t)
+            }
+        })
+    }
 
-                //onError(Exception())
+    fun register(
+        user: User,
+        finished: (user: BaseResponse<User>) -> Unit,
+        onError: (t: Throwable) -> Unit
+    ) {
+        service.insert(user).enqueue(object : Callback<BaseResponse<User>> {
+            override fun onResponse(call: Call<BaseResponse<User>>, response: Response<BaseResponse<User>>) {
+                if (response.isSuccessful) {
+                    val user = response.body()!!
+                    finished(user)
+                } else {
+                    onError(Exception())
+                }
             }
 
             override fun onFailure(call: Call<BaseResponse<User>>, t: Throwable) {

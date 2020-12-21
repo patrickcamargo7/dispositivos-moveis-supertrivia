@@ -10,6 +10,7 @@ import android.widget.Toast
 import ifpr.dispositivosmoveis.supertrivia.R
 import ifpr.dispositivosmoveis.supertrivia.dao.UserDAO
 import ifpr.dispositivosmoveis.supertrivia.ui.main.MainActivity
+import ifpr.dispositivosmoveis.supertrivia.util.Helpers
 import ifpr.dispositivosmoveis.supertrivia.util.UserSession
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -22,6 +23,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_login)
 
         login.setOnClickListener(this);
+        tvRegister.setOnClickListener(this)
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
@@ -33,6 +35,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             R.id.login -> {
                authenticate()
             }
+            R.id.tvRegister -> {
+                startRegisterActivity()
+            }
             else -> {
             }
         }
@@ -40,7 +45,20 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun startMainActivity() {
         val intent = Intent(this, MainActivity::class.java)
+
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_TASK_ON_HOME
         startActivity(intent)
+
+        finish()
+    }
+
+    private fun startRegisterActivity() {
+        val intent = Intent(this, RegisterActivity::class.java)
+
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_TASK_ON_HOME
+        startActivity(intent)
+
+        finish()
     }
 
     private fun authenticate() {
@@ -59,7 +77,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             } else {
                 showLoginFailed(R.string.invalid_email_or_password)
             }
-        }, {
+        }, { error ->
+            Helpers.showErrorConnection(error, this)
+
             loginProgressBar.visibility = View.GONE
             showLoginFailed(R.string.invalid_email_or_password)
         })

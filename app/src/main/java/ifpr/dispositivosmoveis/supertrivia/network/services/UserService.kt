@@ -8,7 +8,7 @@ import retrofit2.http.*
 interface UserService {
     @POST("users")
     @Headers("Content-Type: application/json")
-    fun insert(@Body person: User): Call<User>
+    fun insert(@Body person: User): Call<BaseResponse<User>>
 
     @POST("auth")
     @Headers("Content-Type: application/json")

@@ -10,6 +10,24 @@ class GameSession {
         private const val GAME_KEY = "_game";
         private const val PREFS_GAME_FILE_KEY = "_prefs_file_game_key";
 
+        fun setScore(context: Context, score: Number) {
+            val currentGameSettings = getGame(context)
+            currentGameSettings.score = score
+            setGameSettings(context, currentGameSettings)
+        }
+
+        fun addError(context: Context) {
+            val currentGameSettings = getGame(context)
+            currentGameSettings.errors = currentGameSettings.errors.toInt() + 1
+            setGameSettings(context, currentGameSettings)
+        }
+
+        fun addAssert(context: Context) {
+            val currentGameSettings = getGame(context)
+            currentGameSettings.asserts = currentGameSettings.asserts.toInt() + 1
+            setGameSettings(context, currentGameSettings)
+        }
+
         fun mergeGameSettings(context: Context, game: Game) {
             val currentGameSettings = getGame(context)
 
