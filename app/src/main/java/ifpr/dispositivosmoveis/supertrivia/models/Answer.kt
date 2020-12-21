@@ -4,7 +4,5 @@ data class Answer(
     var description: String,
     var order: Number
 ) {
-    var id: Long? = null
-
-    override fun equals(other: Any?) = other is User && this.id == other.id
+    override fun equals(other: Any?) = other is Answer && this.order == other.order
 }

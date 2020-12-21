@@ -10,6 +10,15 @@ class GameSession {
         private const val GAME_KEY = "_game";
         private const val PREFS_GAME_FILE_KEY = "_prefs_file_game_key";
 
+        fun mergeGameSettings(context: Context, game: Game) {
+            val currentGameSettings = getGame(context)
+
+            game.category = currentGameSettings.category
+            game.difficulty = currentGameSettings.difficulty
+
+            setGameSettings(context, game)
+        }
+
         fun setGameSettings(context: Context, game: Game) {
             val sharedPref = context.getSharedPreferences(PREFS_GAME_FILE_KEY, Context.MODE_PRIVATE)
             with(sharedPref.edit()) {

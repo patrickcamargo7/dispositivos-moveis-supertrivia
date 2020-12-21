@@ -19,5 +19,8 @@
     <string name="select_difficulty">Select a Difficulty</string>
     <string name="select_category">Select Category</string>
     <string name="save">Save</string>
+    <string name="continue_game">Continue Game</string>
+    <string name="send_answer">Send Answer</string>
+    <string name="finish_game">Finish Game</string>
 
 </resources>

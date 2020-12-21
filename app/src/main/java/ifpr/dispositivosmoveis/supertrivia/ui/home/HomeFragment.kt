@@ -33,13 +33,26 @@ class HomeFragment : Fragment(), View.OnClickListener {
         }
 
         btnGameSetup.setOnClickListener(this)
+        btnGameStart.setOnClickListener(this)
+
         navController = Navigation.findNavController(view)
+
+        context?.let {
+            if (GameSession.isConfigured(it) && GameSession.getGame(it).isStarted()) {
+                btnGameStart.text = resources.getText(R.string.continue_game)
+            } else {
+                btnGameStart.text = resources.getText(R.string.start)
+            }
+        }
     }
 
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.btnGameSetup -> {
                 navController!!.navigate(R.id.action_navigation_game_to_navigation_settings)
+            }
+            R.id.btnGameStart -> {
+                navController!!.navigate(R.id.action_navigation_game_to_gameFragment)
             }
             else -> {
             }

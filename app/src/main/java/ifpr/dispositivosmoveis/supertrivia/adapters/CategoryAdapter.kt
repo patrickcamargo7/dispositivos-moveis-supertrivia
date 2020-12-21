@@ -20,7 +20,6 @@ class CategoryAdapter(categoriesList: List<Category>) : RecyclerView.Adapter<Cat
     override fun getItemCount() = categories.size
 
     override fun getItemViewType(position: Int): Int {
-        selected
         if (categories[position] == selected) {
             return R.layout.item_category_selected
         }

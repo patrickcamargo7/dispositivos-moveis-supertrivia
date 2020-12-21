@@ -8,5 +8,5 @@ data class Problem(
 ) {
     var id: Long? = null
 
-    override fun equals(other: Any?) = other is User && this.id == other.id
+    override fun equals(other: Any?) = other is Problem && this.id == other.id
 }

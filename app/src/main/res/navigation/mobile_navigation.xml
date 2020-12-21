@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_navigation_game_to_navigation_ranking"
             app:destination="@id/navigation_ranking" />
+        <action
+            android:id="@+id/action_navigation_game_to_gameFragment"
+            app:destination="@id/gameFragment" />
     </fragment>
 
     <fragment
@@ -29,4 +32,9 @@
         android:name="ifpr.dispositivosmoveis.supertrivia.ui.ranking.RankingFragment"
         android:label="@string/title_ranking"
         tools:layout="@layout/fragment_ranking" />
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="ifpr.dispositivosmoveis.supertrivia.ui.game.GameFragment"
+        android:label="fragment_game"
+        tools:layout="@layout/fragment_game" />
 </navigation>
